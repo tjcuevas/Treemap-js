@@ -1,11 +1,34 @@
-var boxHeight = 0;
-var boxWidth = 0;
-var remainingHeight = 0;
-var remainingWidth = 0;
-var element = null;
-var colors = ['#990000', '#994c00', '#999900', '#4c9900'];
+(function($) {
+
+	function drawtree(vals) {
+		var boxHeight = this.height(),
+			boxWidth = this.width(),
+			remainingHeight = boxHeight,
+			remainingWidth = boxWidth,
+			element = this,
+			colors = ['#FF7575', '#FF79E1', '#FF86C2', '#FE8BF0', '#EA8DFE',
+			'#DD88FD', '#AD8BFE'];
+	}
+
+	$.fn.drawtree = drawtree;
+
+}(jQuery));
+
+var boxHeight = 0,
+	boxWidth = 0,
+	remainingHeight = 0,
+	remainingWidth = 0,
+	element = null,
+	colors = ['#FF7575', '#FF79E1', '#FF86C2', '#FE8BF0', '#EA8DFE',
+	'#DD88FD', '#AD8BFE'];
 
 function drawTreemap(el, vals, options) {
+	if (vals) {
+		vals = vals.sort(function(a, b) {
+			return b - a;
+		});
+	}
+
 	// array of areas
 	element = $(el);
 	var orig = vals;
@@ -70,8 +93,9 @@ function layoutRow(rects, direction) {
 			currentColor = rects[i].Color;
 		} else {
 			//cycle through the default colors
-			currentColor = colors.pop();
-			colors.unshift(currentColor);
+			var colorIndex = i % colors.length;
+			console.log(colorIndex);
+			currentColor = colors[colorIndex];
 		}
 		$('<div/>')
 			.css({
@@ -99,6 +123,7 @@ function layoutRow(rects, direction) {
 	}
 }
 
+//Get the highest aspect ratio from a set of rectangles
 function getAspectRatio(rects) {
 	var max = 0;
 	for (var i = 0; i < rects.length; i++) {
@@ -125,6 +150,7 @@ function getRects(children, shortestSide, direction) {
 	return rects;
 }
 
+//get the total area of a set of nodes 
 function totalArea(children) {
 	var area = 0;
 	for(var i = 0; i < children.length; i++)
@@ -133,6 +159,8 @@ function totalArea(children) {
 	return area;
 }
 
+//Calculate aspect ratio for a single rectangle in both directions
+//Return the higher of the two
 function worst(height, width) {
 	return Math.max(height/width, width/height);
 }
