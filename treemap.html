@@ -10,8 +10,24 @@
 		<script src="treemap.js"></script>
 
 		<script>
-			drawTreemap($('.js-test'), [24,21,13, 12, 5, 4, 1]);
-			$('.js-test').drawtree();
+			var list = [
+				{
+					Value: 24,
+					Children: [{Value: 13}, {Value: 3}]
+				},
+				{
+					Value: 21,
+				},
+				{
+					Value: 13,
+					Children: [{Value: 13}, {Value: 8}, {Value: 23}, {Value: 22}, {Value: 3}]
+				},
+				{
+					Value: 5
+				}
+			];
+
+			$('.js-test').treemap(list);
 		</script>
 	</body>
 </html>
