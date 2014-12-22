@@ -1,4 +1,4 @@
 Treemap-js
 ==========
 
-Easily draw treemaps with javascript / jquery
+jQuery plugin for drawing squarified treemaps
