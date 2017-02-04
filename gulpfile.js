@@ -14,11 +14,11 @@ gulp.task('min', function(cb) {
 	return gulp.src(['src/AppController.js', 'src/treemap.js'])
 		.pipe(uglify())
 		.pipe(concat('treemap.min.js'))
-		.pipe(gulp.dest('./src'));
+		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('clean', function(cb) {
-	rimraf('src/treemap.min.js', cb);
+	rimraf('dist/treemap.min.js', cb);
 });
 
 gulp.task('default', ['test', 'clean', 'min']);
