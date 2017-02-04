@@ -1,4 +1,4 @@
-require('./AppController.js');
+require('../src/AppController.js');
 
 describe('AppController', function() {
 	var app;

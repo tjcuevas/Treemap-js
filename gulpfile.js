@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 
 gulp.task('test', function() {
-	return gulp.src('./src/Test.js')
+	return gulp.src('./Test/Test.js')
 		.pipe(jasmine());
 });
 
